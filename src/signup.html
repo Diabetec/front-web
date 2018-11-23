@@ -20,17 +20,17 @@
 	<div class="logo">Registro</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form id="register-form" class="text-left">
+		<form id="signup-form" class="text-left">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
 					<div class="form-group">
-						<label for="reg_username" class="sr-only">Email</label>
-						<input type="text" class="form-control" id="reg_username" name="reg_username" placeholder="Email">
+						<label for="email" class="sr-only">Email</label>
+						<input type="text" class="form-control" id="email" name="email" placeholder="Email">
 					</div>
 					<div class="form-group">
-						<label for="reg_password" class="sr-only">Contraseña</label>
-						<input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="Contraseña">
+						<label for="password" class="sr-only">Contraseña</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
 					</div>
 					<div class="form-group">
 						<label for="reg_password_confirm" class="sr-only">Confirma Contraseña</label>
@@ -38,16 +38,20 @@
 					</div>
 
 					<div class="form-group">
-						<label for="reg_email" class="sr-only">Nombre completo</label>
-						<input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="Nombre completo">
-					</div>
-					<div class="form-group">
-						<label for="reg_fullname" class="sr-only">Peso</label>
-						<input type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="Peso">
+						<label for="name" class="sr-only">Nombre completo</label>
+						<input type="text" class="form-control" id="name" name="name" placeholder="Nombre completo">
 					</div>
           <div class="form-group">
-            <label for="reg_email" class="sr-only">Altura</label>
-            <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="Altura">
+						<label for="age" class="sr-only">edad</label>
+						<input type="text" class="form-control" id="age" name="age" placeholder="edad">
+					</div>
+					<div class="form-group">
+						<label for="weight" class="sr-only">Peso</label>
+						<input type="text" class="form-control" id="weight" name="weight" placeholder="Peso">
+					</div>
+          <div class="form-group">
+            <label for="heigh" class="sr-only">Altura</label>
+            <input type="text" class="form-control" id="heigh" name="heigh" placeholder="Altura">
           </div>
 
 
@@ -70,6 +74,8 @@
 				<p>¿Ya tienes cuenta? <a href="#">haz login aquí</a></p>
 			</div>
 		</form>
+    <!-- <div id="postResultDiv">
+    </div> -->
 	</div>
 	<!-- end:Main Form -->
 </div>
@@ -101,11 +107,11 @@
 	</div> -->
 	<!-- end:Main Form -->
 <!-- </div> -->
-
-<script type="text/javascript" href="../js/login.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../js/login.js"></script>
+<script type="text/javascript" src="../API_calls/postrequest.js"></script>
 
 
 
