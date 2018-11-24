@@ -1,56 +1,75 @@
+
+var yeison;
 $( document ).ready(function() {
 
+
   // SUBMIT FORM
-  $("#signup-form").submit(function(event) {
+  $("#login-form").submit(function(event) {
     // Prevent the form from submitting via the browser.
     event.preventDefault();
     ajaxPost();
   });
 
-  function ajaxPost(){
+  function ajaxPost(yeison){
     console.log("entró");
 
     // PREPARE FORM DATA
     var formData = {
       email : $("#email").val(),
       password :  $("#password").val(),
-      name :  $("#name").val(),
-      age :  $("#age").val(),
-      heigh :  $("#heigh").val(),
-      weight : $("#weight").val()
     }
 
     // DO POST
     $.ajax({
       type : "POST",
       contentType : "application/json",
-      url : "http://localhost:3000/user/signup",
+      url : "http://localhost:3000/user/login",
       data : JSON.stringify(formData),
       dataType : 'json',
       success : function(customer) {
         $("#postResultDiv").html("<p>" +
         "Post Successfully! <br>" +
         "--->" + JSON.stringify(customer)+ "</p>");
+        yeison = JSON.stringify(customer);
+        check_login_and_save(yeison);
+
       },
       error : function(e) {
-        // alert("Error!")
+        alert("Usuario o contraseña incorrecta!")
+        $("#postResultDiv_error").html("<p>" +
+        "Usuario o contraseña incorrecta" + "</p>");
         console.log("ERROR: ", e);
       }
+
+    }).done(function(){
+
+
+      console.log(yeison);
+
     });
+
+
 
     // Reset FormData after Posting
     resetData();
-    window.location.href = "../src/login.html";
+
+    // window.location.href = "../src/login.html";
   }
 
   function resetData(){
     $("#email").val("");
     $("#password").val("");
-    $("#name").val("");
-    $("#age").val("");
-    $("#reg_password_confirm").val("");
-    $("#heigh").val("");
-    $("#weight").val("");
+  }
+
+  function check_login_and_save(yeison){
+    var n_id = yeison.search("_id") + 6;
+    var n_token = yeison.search("token") + 8;
+    var id = yeison.substr(n_id, (n_id + 16));
+    var token = yeison.substr(n_token, 149);
+    console.log(id);
+    console.log(token);
+    window.location.href = "../src/home.html";
+
   }
 
 })
