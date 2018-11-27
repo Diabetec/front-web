@@ -1,5 +1,7 @@
-
+myStorage = window.localStorage;
 var yeison;
+var id;
+var token;
 $( document ).ready(function() {
 
 
@@ -68,8 +70,14 @@ $( document ).ready(function() {
     var token = yeison.substr(n_token, 149);
     console.log(id);
     console.log(token);
+    localStorage.setItem('id', id);
+    localStorage.setItem('token', token);
     window.location.href = "../src/home.html";
 
   }
 
 })
+var local_token = localStorage.getItem('token');
+console.log(local_token);
+
+console.log(id);
