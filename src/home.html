@@ -63,8 +63,19 @@
         <div class="intro-text">
           <div class="intro-lead-in">Bienvenido a Diabetec</div>
           <div class="intro-heading text-uppercase">No mueras de diabetes</div>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="../../BackEnd_Node/flask_server/index.html">¡Escanea!</a>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="picture.html">¡Toma una foto!</a>
+          
+          <div class="col">
+              <img id="image" style="width:50%; /* you can use % */height: auto;"/>
+          </div>
+            <div class="section-heading text-uppercase" id="info">
+            </div>
+
+          <form action="predict" method="post" id="main-form" enctype="multipart/form-data" onsubmit="event.preventDefault(); post_image();">
+            <label class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">
+              ¡Toma una foto!
+              <input type="file" name="image" accept="image/*" id="file" capture="environment"style="display: none;">
+            </label>
+          </form>
 
         </div>
       </div>
@@ -704,5 +715,59 @@
     <script src="../js/agency.min.js"></script>
 
   </body>
+
+  <script type="text/javascript">
+    document.getElementById("file").onchange = function () {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          // get loaded data and render thumbnail.
+          document.getElementById("image").src = e.target.result;
+      };
+      // read the image file as a data URL.
+      reader.readAsDataURL(this.files[0]);
+      post_image();
+    };
+  
+    function post_image() {
+  
+      var form = $('#main-form')[0];
+      var data = new FormData(form);
+      var user_token = localStorage.getItem('token');
+  
+      $.ajax({
+        type: "POST",
+        url: "/food/predict",
+        processData: false,
+        contentType: false,
+        cache: false,
+        data: data,
+        enctype: 'multipart/form-data'
+      }).done(function(data) {
+        // data = JSON.parse(data);
+        
+        // $("#results").empty();
+        // data.predictions.forEach(function(pred){
+        //   var li = "<li>"+(pred.label)+" - "+Math.round(pred.probability*100)+"%</li>";
+        //   $("#results").append(li);
+        // });
+  
+        console.log(data.predictions[0]);
+        $("#info").append('<h2>Estas comiendo: '+data.predictions[0]['label'] + '</h2>');
+        $("#info").append('<br>');
+        $("#info").append('Calories: '+data.predictions[0]['info']['calories']);
+        $("#info").append('<br>');
+        $("#info").append('Carbs: '+data.predictions[0]['info']['carbs']);
+        $("#info").append('<br>');
+        $("#info").append('Fats: '+data.predictions[0]['info']['fats']);
+        $("#info").append('<br>');
+        $("#info").append('Proteins: '+data.predictions[0]['info']['proteins']);
+        $("#info").append('<br><br>');
+  
+  
+      });
+  
+    }
+  
+    </script>
 
 </html>
