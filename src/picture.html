@@ -63,7 +63,7 @@
   captureButton.addEventListener('click', function() {
     var context = snapshot.getContext('2d');
     context.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
-    imagen = context;
+    imagen = context.drawImage;
 
     // Stop all video streams.
     videoTracks.forEach(function(track) {track.stop()});

@@ -176,7 +176,8 @@ img::-moz-selection {
 header.masthead {
   text-align: center;
   color: white;
-  background-image: url("../img/burger.jpg");
+  background-image: url("../img/image.jpg");
+  /* filter: brightness(70%); */
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
